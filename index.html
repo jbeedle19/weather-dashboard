@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4 bg-light">
-                <h2>Search for a City:</h2>
+                <p class="h5">Search for a City:</p>
                 <form class="form-inline my-2">
                     <input class="form-control" type="search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">
@@ -31,7 +31,7 @@
                           </svg>
                     </button>
                   </form>
-                  <ul class="list-group mb-2">
+                  <ul class="list-group mb-3">
                     <li class="list-group-item">Cras justo odio</li>
                     <li class="list-group-item">Dapibus ac facilisis in</li>
                     <li class="list-group-item">Morbi leo risus</li>
@@ -40,7 +40,18 @@
                   </ul>
             </div>
             <div class="col-8">
-                Results...
+                <div class="row">
+                    <div class="col-12 my-2 ml-2 border rounded">
+                        <p class="h3 my-4 city-name" id="city-name">Atlanta</p>
+                        <p>Temperature:</p>
+                        <p>Humitidy:</p>
+                        <p>Wind Speed:</p>
+                        <p class="mb-5">UV Index:</p>
+                    </div> 
+                    <div class="col-11">
+                        <p class="h3">5-Day Forecast:</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
