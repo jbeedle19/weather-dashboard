@@ -11,17 +11,22 @@ function currentWeather() {
     })
     .then(function(response) {
         console.log(response);
-        console.log(response.name + " (" + currentDate + ") " + response.weather[0].icon);
-        console.log(response.main.temp + "°F");
-        console.log(response.main.humidity + "%");
-        console.log(response.wind.speed + " MPH");
+        var cityDateIcon = response.name + " (" + currentDate + ") " + response.weather[0].icon;
+        console.log(cityDateIcon);
+        var currentTemp = response.main.temp + "°F";
+        console.log(currentTemp);
+        var currentHMD = response.main.humidity + "%";
+        console.log(currentHMD);
+        var windSpeed = response.wind.speed + " MPH";
+        console.log(windSpeed);
         //console.log("http://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=f6fb688c99006ae63bed987a2574a6d4")
         fetch("http://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=f6fb688c99006ae63bed987a2574a6d4")
         .then(function(response) {
             return response.json();
         })
         .then(function(response) {
-            console.log(response);
+            var uvIndex = response.value
+            console.log(uvIndex);
         })
     })
 }
