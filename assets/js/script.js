@@ -15,13 +15,16 @@ function currentWeather() {
     .then(function(response) {
         console.log(response);
         var cityDateIcon = response.name + " (" + currentDate + ") " + response.weather[0].icon;
+            $("#cityDateIcon").append(cityDateIcon);
         console.log(cityDateIcon);
         var currentTemp = response.main.temp + "°F";
             $("#currentTemp").append(currentTemp);
         console.log(currentTemp);
         var currentHMD = response.main.humidity + "%";
+            $("#currentHMD").append(currentHMD);
         console.log(currentHMD);
         var windSpeed = response.wind.speed + " MPH";
+            $("#windSpeed").append(windSpeed);
         console.log(windSpeed);
         //console.log("http://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=f6fb688c99006ae63bed987a2574a6d4")
         fetch("http://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=f6fb688c99006ae63bed987a2574a6d4")
@@ -30,8 +33,23 @@ function currentWeather() {
         })
         .then(function(response) {
             var uvIndex = response.value
-            console.log(uvIndex);
-        })
+            if (uvIndex < 3) {
+                $("#uvIndex")
+                .addClass("favorable")
+                //.append(uvIndex);
+            } else if (uvIndex < 7) {
+                $("#uvIndex")
+                .removeClass()
+                .addClass("moderate")
+                //.append(uvIndex);  
+            } else if (uvIndex >= 7) {
+                $("#uvIndex")
+                .removeClass()
+                .addClass("severe")
+                //.append(uvIndex)
+            }  
+            $("#uvIndex").append(uvIndex) 
+        });
     })
 }
 
