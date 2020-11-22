@@ -42,7 +42,7 @@ function currentWeather() {
                 //.append(uvIndex)
             }  
             $("#uvIndex").append(uvIndex) 
-            // JUST FINISHED THIS, WORK ON DISPLAYING DATA BASED ON USER INPUT
+            //WORK ON DISPLAYING DATA BASED ON USER INPUT
         });
     })
 }
@@ -54,7 +54,7 @@ function forecast() {
     })
     .then(function(response) {
         console.log(response);
-        var forecastDate = moment(response.list[1].dt_txt).format("M/D/YYYY");
+        /* var forecastDate = moment(response.list[1].dt_txt).format("M/D/YYYY");
         console.log(forecastDate);
         var forecastIcon = response.list[1].weather[0].icon;
         console.log(forecastIcon);
@@ -68,7 +68,22 @@ function forecast() {
                             '<p class="card-text">' + forecastTemp + '</p>' +
                             '<p class="card-text">' + forecastHMD + '</p>' +
                            '</div>';
+        $(".card-deck").append(forecastHTML); */
+        for (var i = 1; i < 6; i++) {
+            var forecastDate = moment(response.list[i].dt_txt).format("M/D/YYYY");
+            var forecastIcon = response.list[i].weather[0].icon;
+            var forecastTemp = "TEMP: "+ response.list[i].main.temp + "°F";
+            var forecastHMD = "HMD: " + response.list[i].main.humidity + "%";
+            var forecastHTML = '<div class="card text-white bg-primary p-2">' +
+                            '<p class="card-title h5">' + forecastDate + '</p>' +
+                            '<p class="card-text">' + forecastIcon + '</p>' +
+                            '<p class="card-text">' + forecastTemp + '</p>' +
+                            '<p class="card-text">' + forecastHMD + '</p>' +
+                           '</div>';
         $(".card-deck").append(forecastHTML);
+        //STOPPED HERE, WORKING ON LOOP FOR 5 DAY FORECAST
+        //NEED TO LOOK AT DATA AND SEE WHEN IT HITS THE NEXT DAY
+        }
     });
 }
 forecast();
