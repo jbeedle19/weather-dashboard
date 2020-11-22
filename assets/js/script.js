@@ -1,9 +1,12 @@
+// Variables:
 var searchInput = "Philadelphia"
 var apiURLCurrent =  "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&units=imperial&appid=f6fb688c99006ae63bed987a2574a6d4"
 var apiURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&units=imperial&appid=f6fb688c99006ae63bed987a2574a6d4"
 var apiURLIndex = "http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}"
 var currentDate = moment().format("M/D/YYYY") 
+//var 
 
+// Functions:
 function currentWeather() {
     fetch(apiURLCurrent)
     .then(function(response) {
@@ -14,6 +17,7 @@ function currentWeather() {
         var cityDateIcon = response.name + " (" + currentDate + ") " + response.weather[0].icon;
         console.log(cityDateIcon);
         var currentTemp = response.main.temp + "°F";
+            $("#currentTemp").append(currentTemp);
         console.log(currentTemp);
         var currentHMD = response.main.humidity + "%";
         console.log(currentHMD);
@@ -30,4 +34,12 @@ function currentWeather() {
         })
     })
 }
-currentWeather();
+
+function searchHistory() {
+    // Function to save the things being typed into the search field and also display them in a list underneath
+}
+
+$("#citySearchForm").on("submit", function(event) {
+    event.preventDefault();
+    currentWeather();
+    });
