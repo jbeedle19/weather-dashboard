@@ -13,6 +13,7 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
+    <!-- Navbar -->
     <header class="header">
         <nav class="navbar navbar-dark bg-dark">
             <span class="navbar-brand mx-auto mb-0 h1">Weather Dashboard</span>
@@ -20,10 +21,11 @@
     </header>
     <div class="container">
         <div class="row">
+            <!-- Search Form -->
             <div class="col-4 bg-light">
                 <p class="h5 my-2">Search for a City:</p>
                 <form class="form-inline my-2" id="citySearchForm">
-                    <input class="form-control" type="search" aria-label="Search">
+                    <input class="form-control" type="text" id="cityName">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit" id="searchBtn">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
@@ -31,6 +33,7 @@
                           </svg>
                     </button>
                   </form>
+                  <!-- Search History -->
                   <ul class="list-group mb-3">
                     <li class="list-group-item">Cras justo odio</li>
                     <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -41,17 +44,19 @@
             </div>
             <div class="col-8">
                 <div class="row">
+                    <!-- Display for Current Weather  -->
                     <div class="col-12 my-2 ml-3 border rounded">
-                        <p class="h3 my-4 city-name" id="cityDateIcon"></p>
+                        <p class="h3 my-4 city-name" id="cityDateIcon">Where Do You Want to Go?</p>
                         <p>Temperature: <span id="currentTemp"></span></p>
                         <p>Humitidy: <span id="currentHMD"></span></p>
                         <p>Wind Speed: <span id="windSpeed"></span></p>
                         <p class="mb-5">UV Index: <span id="uvIndex"></span></p>
                     </div> 
+                    <!-- Display for 5-day Forecast -->
                     <div class="col-12">
                         <p class="h3">5-Day Forecast:</p>
                         <div class="card-deck">
-                            
+
                         </div>
                     </div>
                 </div>
