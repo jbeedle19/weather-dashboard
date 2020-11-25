@@ -15,8 +15,12 @@ function currentWeather() {
         return response.json();
     })
     .then(function(response) {
-        var cityDateIcon = response.name + " (" + currentDate + ") " + response.weather[0].icon;
-            $("#cityDateIcon").text(cityDateIcon);
+        var iconCode = response.weather[0].icon;
+        var iconURL = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+        var cityDate = response.name + " (" + currentDate + ") ";
+        var cityDateIconHTML = '<p class="h3 my-4 city-name" id="cityDateIcon">' + cityDate + '<img id="weatherIcon" src="' + iconURL+ '"/>'; 
+            $('#cityDateIcon').remove();
+            $("#currentWeatherContainer").prepend(cityDateIconHTML);
         var currentTemp = response.main.temp + "°F";
             $("#currentTemp").text(currentTemp);
         var currentHMD = response.main.humidity + "%";
@@ -57,16 +61,19 @@ function forecast() {
     .then(function(response) {
         $(".card-deck").html('');
         // For loop to loop through and display 5-day forecast
-        for (var i = 4; i < 37; i += 8) {    
+        for (var i = 5; i < 40; i += 8) {    
             var forecastDate = moment(response.list[i].dt_txt).format("M/D/YYYY");
             var forecastIcon = response.list[i].weather[0].icon;
+            var forecastIconURL = "http://openweathermap.org/img/wn/" + forecastIcon + ".png";
             var forecastTemp = "TEMP: "+ response.list[i].main.temp + "°F";
             var forecastHMD = "HMD: " + response.list[i].main.humidity + "%";
-            var forecastHTML = '<div class="card text-white bg-primary p-2">' +
+            var forecastHTML = '<div class="col-md-6 col-lg-4 col-xl-3 py-2">' +
+                            '<div class="card text-white bg-primary p-2">' +
                             '<p class="card-title h5">' + forecastDate + '</p>' +
-                            '<p class="card-text">' + forecastIcon + '</p>' +
+                            '<p class="card-text"><img id="weatherIcon" src="' + forecastIconURL + '"/></p>' +
                             '<p class="card-text">' + forecastTemp + '</p>' +
                             '<p class="card-text">' + forecastHMD + '</p>' +
+                           '</div>' +
                            '</div>';
         $(".card-deck").append(forecastHTML);
         }
@@ -76,6 +83,7 @@ function forecast() {
 
 function searchHistory() {
     // Function to save the things being typed into the search field and also display them in a list underneath
+    //var 
 }
 
 // Event Listeners:
@@ -83,4 +91,5 @@ $("#citySearchForm").on("submit", function(event) {
     event.preventDefault();
     currentWeather();
     forecast();
+    //$("#cityName").('');
 });

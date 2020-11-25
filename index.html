@@ -19,7 +19,7 @@
             <span class="navbar-brand mx-auto mb-0 h1">Weather Dashboard</span>
           </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <!-- Search Form -->
             <div class="col-4 bg-light">
@@ -45,8 +45,8 @@
             <div class="col-8">
                 <div class="row">
                     <!-- Display for Current Weather  -->
-                    <div class="col-12 my-2 ml-3 border rounded">
-                        <p class="h3 my-4 city-name" id="cityDateIcon">Where Do You Want to Go?</p>
+                    <div class="col-12 my-2 ml-3 border rounded" id="currentWeatherContainer">
+                        <p class="h3 my-4 city-name" id="cityDateIcon">Where Do You Want to Go?<img id="weatherIcon" src=""></p>
                         <p>Temperature: <span id="currentTemp"></span></p>
                         <p>Humitidy: <span id="currentHMD"></span></p>
                         <p>Wind Speed: <span id="windSpeed"></span></p>
