@@ -24,7 +24,7 @@ function currentWeather(city) {
                     $("#currentHMD").text(currentHMD);
                 var windSpeed = response.wind.speed + " MPH";
                     $("#windSpeed").text(windSpeed);
-                fetch("http://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=" + apiKey)
+                fetch("https://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=" + apiKey)
                 .then(function(response) {
                     return response.json();
                 })
@@ -84,6 +84,9 @@ function forecast(city) {
         } else {
             return;
         }
+    })
+    .catch(function(error) {
+        return;
     })
 }
 
