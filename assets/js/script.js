@@ -99,7 +99,7 @@ function searchHistory(city) {
                         $(".list-group").prepend(liHTML);
                         savedSearchHistory.unshift(city);
                         localStorage.setItem("history", JSON.stringify(savedSearchHistory));
-                        // How to handle not saving duplicate cities or errors/cities that couldn't get searched?
+                        // How to handle not saving duplicate cities?
         } else {
             return;
         }
