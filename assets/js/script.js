@@ -1,15 +1,14 @@
 // Variables:
 //var searchInput = document.querySelector("#cityName");
-var city = "Philadelphia";
+//var city = "Philadelphia";
 var apiKey = "f6fb688c99006ae63bed987a2574a6d4";
 var forecastApiKey = "c6f2b718e0bbb599b19005c4584b35bc";
-var apiURLCurrent =  "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
-var apiURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + forecastApiKey;
 var currentDate = moment().format("M/D/YYYY"); 
 
 // Functions:
 // Function for the current weather to display
-function currentWeather() {
+function currentWeather(city) {
+    var apiURLCurrent =  "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
     fetch(apiURLCurrent)
     .then(function(response) {
         return response.json();
@@ -35,6 +34,7 @@ function currentWeather() {
             var uvIndex = response.value
             if (uvIndex < 3) {
                 $("#uvIndex")
+                .removeClass()
                 .addClass("favorable")
             } else if (uvIndex < 7) {
                 $("#uvIndex")
@@ -53,7 +53,8 @@ function currentWeather() {
 }
 
 // Function for the 5-day forecast
-function forecast() {
+function forecast(city) {
+    var apiURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + forecastApiKey;
     fetch(apiURLForecast)
     .then(function(response) {
         return response.json();
@@ -81,15 +82,24 @@ function forecast() {
 }
 
 
-function searchHistory() {
+function searchHistory(city) {
+    
     // Function to save the things being typed into the search field and also display them in a list underneath
-    //var 
+    // var 
+    // shouldn't save duplicate cities
 }
 
 // Event Listeners:
 $("#citySearchForm").on("submit", function(event) {
     event.preventDefault();
-    currentWeather();
-    forecast();
-    //$("#cityName").('');
+    var searchedCity = $("#cityName").val();
+    currentWeather(searchedCity);
+    forecast(searchedCity);
+    //searchHistory(searchedCity);
+    $("#cityName").val('');
 });
+
+//when search history city is clicked run the functions to display
+
+//Page reloads with the last searched value or a default value if nothing in localStorage
+// run currentWeather and forecast 
