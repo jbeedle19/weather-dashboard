@@ -1,9 +1,8 @@
 // Variables:
-//var searchInput = document.querySelector("#cityName");
-//var city = "Philadelphia";
 var apiKey = "f6fb688c99006ae63bed987a2574a6d4";
 var forecastApiKey = "c6f2b718e0bbb599b19005c4584b35bc";
 var currentDate = moment().format("M/D/YYYY");
+var savedSearchHistory = JSON.parse(localStorage.getItem("history")) || [];
 
 // Functions:
 // Function for the current weather to display
@@ -83,7 +82,7 @@ function forecast(city) {
                 }
             });
         } else {
-            alert("Error: " + response.statusText);
+            return;
         }
     })
     .catch(function(error) {
@@ -98,8 +97,16 @@ function searchHistory(city) {
     } else {
       var liHTML = '<li class="list-group-item" id="searchHistory">' + city + '</li>';
     $(".list-group").prepend(liHTML);
+    savedSearchHistory.unshift(city);
+    localStorage.setItem("history", JSON.stringify(savedSearchHistory));
     // How to handle not saving duplicate cities or errors/cities that couldn't get searched? 
+    // Also how to handle printing city name with first letter capitalized?
     }
+    
+}
+
+// Function to load search history when page loads/reloads
+function loadSearchHistory() {
     
 }
 
@@ -123,7 +130,4 @@ $(document).on("click", "#searchHistory", function(){
     $(this).addClass("active");
     currentWeather(savedCity);
     forecast(savedCity);
-})
-
-//Page reloads with the last searched value or a default value if nothing in localStorage
-// run currentWeather and forecast 
+});
