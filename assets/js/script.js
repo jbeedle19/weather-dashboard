@@ -83,9 +83,8 @@ function forecast(city) {
 
 
 function searchHistory(city) {
-    
-    // Function to save the things being typed into the search field and also display them in a list underneath
-    // var 
+    var liHTML = '<li class="list-group-item" id="searchHistory">' + city + '</li>';
+    $(".list-group").prepend(liHTML);
     // shouldn't save duplicate cities
 }
 
@@ -95,11 +94,12 @@ $("#citySearchForm").on("submit", function(event) {
     var searchedCity = $("#cityName").val();
     currentWeather(searchedCity);
     forecast(searchedCity);
-    //searchHistory(searchedCity);
+    searchHistory(searchedCity);
     $("#cityName").val('');
 });
 
 //when search history city is clicked run the functions to display
+//include add activated class for showing which one was clicked?
 
 //Page reloads with the last searched value or a default value if nothing in localStorage
 // run currentWeather and forecast 
