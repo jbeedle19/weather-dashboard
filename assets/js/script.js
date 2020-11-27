@@ -92,25 +92,25 @@ function forecast(city) {
 
 // Function to prepend input into list so most recent search is always at the top
 function searchHistory(city) {
-    if (city === '') {
-        return;
-    } else {
-      var liHTML = '<li class="list-group-item capitalize" id="searchHistory">' + city + '</li>';
-    $(".list-group").prepend(liHTML);
-    savedSearchHistory.unshift(city);
-    localStorage.setItem("history", JSON.stringify(savedSearchHistory));
-    // How to handle not saving duplicate cities or errors/cities that couldn't get searched? 
-    // Also how to handle printing city name with first letter capitalized?
-    }
-    
-}
+    var api =  "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+    fetch(api).then(function(response) {
+        if (response.ok) {
+            var liHTML = '<li class="list-group-item capitalize" id="searchHistory">' + city + '</li>';
+                        $(".list-group").prepend(liHTML);
+                        savedSearchHistory.unshift(city);
+                        localStorage.setItem("history", JSON.stringify(savedSearchHistory));
+                        // How to handle not saving duplicate cities or errors/cities that couldn't get searched?
+        } else {
+            return;
+        }
+    });
+};
 
 // Function to load search history when page loads/reloads
 function loadSearchHistory() {
     for (var i = 0; i < savedSearchHistory.length; i++) {
         var cityHistoryLiHTML = '<li class="list-group-item capitalize" id="searchHistory">' + savedSearchHistory[i] + '</li>';
         $(".list-group").append(cityHistoryLiHTML);
-        console.log(savedSearchHistory[i]);
     }
 }
 
