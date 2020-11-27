@@ -12,7 +12,7 @@ An online weather dashboard that displays a current and 5-day forecast for trave
 * jQuery
 
 ## Website
-placeholder text
+https://jbeedle19.github.io/weather-dashboard/
 
 ## Screenshots
 placeholder text

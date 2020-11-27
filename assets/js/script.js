@@ -86,7 +86,7 @@ function forecast(city) {
         }
     })
     .catch(function(error) {
-        alert("Unable to connect to Weather Report")
+        return;
     })
 }
 
