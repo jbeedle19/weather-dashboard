@@ -16,3 +16,6 @@
     padding: 5px;
     border-radius: 5px;
 }
+.capitalize {
+    text-transform: capitalize;
+}

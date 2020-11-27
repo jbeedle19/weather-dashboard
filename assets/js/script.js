@@ -95,7 +95,7 @@ function searchHistory(city) {
     if (city === '') {
         return;
     } else {
-      var liHTML = '<li class="list-group-item" id="searchHistory">' + city + '</li>';
+      var liHTML = '<li class="list-group-item capitalize" id="searchHistory">' + city + '</li>';
     $(".list-group").prepend(liHTML);
     savedSearchHistory.unshift(city);
     localStorage.setItem("history", JSON.stringify(savedSearchHistory));
@@ -107,7 +107,11 @@ function searchHistory(city) {
 
 // Function to load search history when page loads/reloads
 function loadSearchHistory() {
-    
+    for (var i = 0; i < savedSearchHistory.length; i++) {
+        var cityHistoryLiHTML = '<li class="list-group-item capitalize" id="searchHistory">' + savedSearchHistory[i] + '</li>';
+        $(".list-group").append(cityHistoryLiHTML);
+        console.log(savedSearchHistory[i]);
+    }
 }
 
 // Event Listeners:
@@ -131,3 +135,6 @@ $(document).on("click", "#searchHistory", function(){
     currentWeather(savedCity);
     forecast(savedCity);
 });
+
+// Load any search history from localStorage
+loadSearchHistory();
