@@ -85,9 +85,6 @@ function forecast(city) {
             return;
         }
     })
-    .catch(function(error) {
-        return;
-    })
 }
 
 // Function to prepend input into list so most recent search is always at the top
