@@ -15,7 +15,7 @@ An online weather dashboard that displays a current and 5-day forecast for trave
 https://jbeedle19.github.io/weather-dashboard/
 
 ## Screenshots
-placeholder text
+![screenshot](./assets/images/screenshot.png)
 
 ## Contribution
 Made with ❤️ by Joshua Beedle
