@@ -7,7 +7,7 @@ var savedSearchHistory = JSON.parse(localStorage.getItem("history")) || [];
 // Functions:
 // Function for the current weather to display
 function currentWeather(city) {
-    var apiURLCurrent =  "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+    var apiURLCurrent =  "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
     fetch(apiURLCurrent)
         .then(function(response) {
             if (response.ok) {
@@ -57,7 +57,7 @@ function currentWeather(city) {
 
 // Function for the 5-day forecast
 function forecast(city) {
-    var apiURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + forecastApiKey;
+    var apiURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + forecastApiKey;
     fetch(apiURLForecast)
     .then(function(response) {
         if (response.ok) {
@@ -92,7 +92,7 @@ function forecast(city) {
 
 // Function to prepend input into list so most recent search is always at the top
 function searchHistory(city) {
-    var api =  "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+    var api =  "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
     fetch(api).then(function(response) {
         if (response.ok) {
             var liHTML = '<li class="list-group-item capitalize" id="searchHistory">' + city + '</li>';
