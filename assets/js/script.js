@@ -13,7 +13,7 @@ function currentWeather(city) {
             if (response.ok) {
                 response.json().then(function(response) {
                 var iconCode = response.weather[0].icon;
-                var iconURL = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+                var iconURL = "https://openweathermap.org/img/wn/" + iconCode + ".png";
                 var cityDate = response.name + " (" + currentDate + ") ";
                 var cityDateIconHTML = '<p class="h3 my-4 city-name" id="cityDateIcon">' + cityDate + '<img id="weatherIcon" src="' + iconURL+ '"/>'; 
                     $('#cityDateIcon').remove();
@@ -67,7 +67,7 @@ function forecast(city) {
                 for (var i = 5; i < 40; i += 8) {    
                     var forecastDate = moment(response.list[i].dt_txt).format("M/D/YYYY");
                     var forecastIcon = response.list[i].weather[0].icon;
-                    var forecastIconURL = "http://openweathermap.org/img/wn/" + forecastIcon + ".png";
+                    var forecastIconURL = "https://openweathermap.org/img/wn/" + forecastIcon + ".png";
                     var forecastTemp = "TEMP: "+ response.list[i].main.temp + "°F";
                     var forecastHMD = "HMD: " + response.list[i].main.humidity + "%";
                     var forecastHTML = '<div class="col-md-6 col-lg-4 col-xl-3 py-2">' +
