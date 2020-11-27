@@ -3,7 +3,7 @@
 //var city = "Philadelphia";
 var apiKey = "f6fb688c99006ae63bed987a2574a6d4";
 var forecastApiKey = "c6f2b718e0bbb599b19005c4584b35bc";
-var currentDate = moment().format("M/D/YYYY"); 
+var currentDate = moment().format("M/D/YYYY");
 
 // Functions:
 // Function for the current weather to display
@@ -81,14 +81,20 @@ function forecast(city) {
     });
 }
 
-
+// Function to prepend input into list so most recent search is always at the top
 function searchHistory(city) {
-    var liHTML = '<li class="list-group-item" id="searchHistory">' + city + '</li>';
+    if (city === '') {
+        return;
+    } else {
+      var liHTML = '<li class="list-group-item" id="searchHistory">' + city + '</li>';
     $(".list-group").prepend(liHTML);
-    // shouldn't save duplicate cities
+    // shouldn't save duplicate cities  
+    }
+    
 }
 
 // Event Listeners:
+// Listens for input to be submitted and runs weather functions
 $("#citySearchForm").on("submit", function(event) {
     event.preventDefault();
     var searchedCity = $("#cityName").val();
@@ -98,8 +104,15 @@ $("#citySearchForm").on("submit", function(event) {
     $("#cityName").val('');
 });
 
-//when search history city is clicked run the functions to display
-//include add activated class for showing which one was clicked?
+// Listens for search history list item to be clicked and reruns weather functions
+$(document).on("click", "#searchHistory", function(){
+    var savedCity = $(this).text();
+    // This adds/removes active class so you can see which one was clicked/being displayed
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+    currentWeather(savedCity);
+    forecast(savedCity);
+})
 
 //Page reloads with the last searched value or a default value if nothing in localStorage
 // run currentWeather and forecast 
