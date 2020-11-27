@@ -98,7 +98,7 @@ function searchHistory(city) {
     } else {
       var liHTML = '<li class="list-group-item" id="searchHistory">' + city + '</li>';
     $(".list-group").prepend(liHTML);
-    // shouldn't save duplicate cities  
+    // How to handle not saving duplicate cities or errors/cities that couldn't get searched? 
     }
     
 }
@@ -111,7 +111,7 @@ $("#citySearchForm").on("submit", function(event) {
     currentWeather(searchedCity);
     forecast(searchedCity);
     searchHistory(searchedCity);
-    
+    $("#searchHistory").siblings().removeClass("active");
     $("#cityName").val('');
 });
 
